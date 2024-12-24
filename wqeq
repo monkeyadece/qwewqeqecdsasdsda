@@ -1,0 +1,45 @@
+local usernames = {
+    "i0gc", "Aadenxox2", "Puhgee", "Regrater", "Rikumah", "FallenToast12", "Hisitox", "Gen5Turbo",
+    "Lastgueston_earth", "JustSynnnn", "Kazusaki", "VeronicaLadyy", "Froggerrrrboi", "h9teful",
+    "Not_Stormzy", "BryPon_YT", "zemqs", "GuyOne311", "SpaJzrer", "yolo_KL221", "efdeepppp",
+    "MercilessBanditTaken", "0dneyray", "Lost_Test", "MiniatureSigy", "KittenBagelz", "Here4Money2", "PingTheChad",
+    "david123456ro", "Master_nerdwhaI", "Chezz1946", "CeleronD_Rus2", "Edvard_As",
+    "neddleduck", "YTGonzo", "Warm_Vibes", "AsianAbrex", "PreSpawns", "ROGMITOP", "cinnphony", "kerub131", "cleandrawls",
+    "PentUpPupp", "tomsons57", "baconman11538", "LUKASAJs", "gofinek"
+}
+
+printl('Hey you ran the mod checker script! [Made by; monkey]')
+
+function checkPlayersInGame()
+    local foundPlayer = false
+
+    local playersService = game:GetService("Players")
+    if not playersService then
+        printl("Error: Players service is nil")
+        return
+    end
+
+    for i, username in ipairs(usernames) do
+        printl("Checking username:", username)
+        local player = playersService:FindFirstChild(username)
+        if player then
+            printl("Found player:", username)
+            local e = username .. " joined!"
+            messagebox(e, 'ALERT MOD JOINED', 1)
+            printl(e, "ALRET MOD JOINED")
+            table.remove(usernames, i)
+            foundPlayer = true
+            wait(600)
+            table.insert(usernames, username)
+        end
+    end
+
+    if not foundPlayer then
+        printl("Odd... No mods detected yet")
+    end
+end
+
+while true do
+    wait(1/2)
+    checkPlayersInGame()
+end
